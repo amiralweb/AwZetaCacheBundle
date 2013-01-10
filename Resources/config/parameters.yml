@@ -1,0 +1,10 @@
+parameters:
+  aw_zeta_cache.storage.file_plain: ezcCacheStorageFilePlain
+  aw_zeta_cache.storage.file_array: ezcCacheStorageFileArray #(Deprecated by ezcCacheStorageFileObject)
+  aw_zeta_cache.storage.file_object: ezcCacheStorageFileObject
+  aw_zeta_cache.storage.file_eval_array: ezcCacheStorageFileEvalArray
+  aw_zeta_cache.storage.memcache_plain: ezcCacheStorageMemcachePlain
+  aw_zeta_cache.storage.apc_plain: ezcCacheStorageApcPlain
+  aw_zeta_cache.storage.apc_file_array: ezcCacheStorageFileApcArray
+  aw_zeta_cache.stack.replacement_strategy.lfu: ezcCacheStackLfuReplacementStrategy
+  aw_zeta_cache.stack.replacement_strategy.lru: ezcCacheStackLruReplacementStrategy

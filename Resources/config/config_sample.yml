@@ -1,0 +1,36 @@
+aw_zeta_cache:
+    app_clear: true
+    dev_mode: %kernel.debug%
+    dog_pile_protection: true
+    common_storage_options:
+            ttl: 500
+            permissions: 0644
+            extension:
+            lockFile: .ezcLock
+            lockWaitTime: 200000 #ms
+            maxLockTime: 5 #s
+            metaDataFile: .ezcMetaData
+    common_stack_options:
+       #     bubbleUpOnRestore:
+       #     replacementStrategy
+
+    storages:
+      file_plain_my_id:
+         storage_type: ezcCacheStorageFileObject
+         location: /tmp/cache/file1
+      apc_plain_array_custom_id:
+         app_clear: false
+         storage_type: ezcCacheStorageFileApcArray
+         options:
+              app_clear: false
+    stacks:
+      my_stack_id:
+          app_clear: false
+          storages:
+              - { id: file_plain_my_id, itemLimit: 50000, freeRate: 0.2 }
+              - { id: apc_custom_id, itemLimit: 10000, freeRate: 0.3 }
+          options:
+       #     metaStorage:                 # storage id : by default the last defined storage will be used, is it is considered in high stack
+                                          # you can define here another storage id to use instead, see zeta cache doc
+       #     replacementStrategy:
+       #     bubbleUpOnRestore:

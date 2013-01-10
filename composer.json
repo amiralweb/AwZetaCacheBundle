@@ -1,0 +1,23 @@
+{
+	"name" : "aw/zeta-cache-bundle",
+	"type" : "symfony-bundle",
+	"description" : "A complete Zeta Cache component Bundle integration for symfony2 framework",
+	"keywords" : ["hierarchic caching", "cache", "symfony2", "zeta components"],
+	"license" : "Apache-2.0",
+	"authors" : [{
+				"name" : "Mohamed Karnichi",
+				"homepage" : "http://www.amiralweb.com"
+			}],
+	"require" : {
+		"symfony/symfony" : "2.1.*",
+		"zetacomponents/cache" : "dev-master"
+	},
+	"minimum-stability" : "dev",
+
+	"autoload" : {
+		"psr-0" : {
+			"Aw\\ZetaCacheBundle" : ""
+		}
+	},
+	"target-dir" : "Aw/ZetaCacheBundle"
+}

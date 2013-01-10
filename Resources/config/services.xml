@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<parameters>
+		<parameter key="aw_zeta_cache.cache_manager.class">Aw\ZetaCacheBundle\Cache\CacheManager</parameter>
+		<parameter key="aw_zeta_cache.cache_clearer.class">Aw\ZetaCacheBundle\Cache\CacheClearer</parameter>
+		<parameter key="aw_zeta_cache.storage.abstract.class">ezcCacheStorage</parameter>
+		<parameter key="aw_zeta_cache.stack.class">ezcCacheStack</parameter>
+		<parameter key="aw_zeta_cache.stack.configuration.class">ezcCacheStackStorageConfiguration</parameter>
+		<parameter key="aw_zeta_cache.stack.options.class">ezcCacheStackOptions</parameter>
+		<parameter key="aw_zeta_cache.anti_dog_pile_decorator_abstract.class">Aw\ZetaCacheBundle\Cache\AntiDogPile\AntiDogPileStorageDecorator</parameter>
+		<parameter key="aw_zeta_cache.anti_dog_pile_decorator_factory.class">Aw\ZetaCacheBundle\Cache\AntiDogPile\AntiDogPileStorageFactory</parameter>
+		<parameter key="aw_zeta_cache.cache_service_prefix" type="constant">Aw\ZetaCacheBundle\DependencyInjection\AwZetaCacheExtension::CACHE_SERVICE_PREFIX</parameter>
+	</parameters>
+
+	<services>
+		<service id="aw_zeta_cache.cache_clearer" class="%aw_zeta_cache.cache_clearer.class%">
+		    <argument>%aw_zeta_cache.cache_service_prefix%</argument>
+			<call method="setContainer">
+				<argument type="service" id="service_container" />
+			</call>
+			<tag name="kernel.cache_clearer" />
+		</service>
+	</services>
+
+</container>
