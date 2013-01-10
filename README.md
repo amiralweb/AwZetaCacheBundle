@@ -76,41 +76,33 @@ This is a **Full integration** of Zeta cache component into Symfony2.
 
 It comes with all cache component features. And some handy capabilities:
 
-- Automatic creation of cache locations:
-
+- **Automatic creation of cache locations**:
     As by default for file and memory/file hybrid storage (ezcCacheStorageFileApcArray) the location should be an existing writeable path.
-
+    
 - **Dog Pile effect protection for stand alone storages** :
-
     You can enable Anti Dog Pile protection for stand alone storages. As the major protection against this effect was only implemented in Stack Storage.
     When enabled, storages that dont belong to any stack will be automatically protected from race conditions in high load environments.
 
 - **Commande line tool** :
-
     + to delete any cache item by combination of tags/values.
     + to reset any cache backend, or all cache backends.
 
 - **A cache cleaner service** :
-
     Just like the command line tool, you can use it to clear any storage, or to delete any cache item, from your code.
     you can use it to for example to clear cache items based on events.
 
 - **App level cache cleaning** :
-
     You can define witch storages backends to clear when the hole Symfony2 application cache is cleared
 
 - **Developer Freindly** DevMode :
-
     you can configure all you caches and check that all is working fine, you can set the dev_mode in the configuration.
     In this mode all cache items will always be marked as invalid (so you will never have to clear the cache your self).
 
 - And of course for each defined cache storage, a custom service is made, and available on demand.
 
-
 ## Bundle documentation
 
-The bundle documentation is available in [./Resources/meta/documentation.rst](./AwZetaCacheBundle/blob/master/Resources/meta/documentation.rst).
-
+The bundle documentation is available in `Resources/meta/documentation.rst` 
 
 ## License
-The code is released under the Apache License, Version 2.0. You can find it here [Resources/meta/LICENCE](./Resources/meta/LICENCE)
+The code is released under the Apache License, Version 2.0. You can find in `Resources/meta/LICENCE`
