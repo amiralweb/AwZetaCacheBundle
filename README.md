@@ -109,7 +109,7 @@ It comes with all cache component features. And some handy capabilities:
 
 ## Bundle documentation
 
-The bundle documentation is available in [./Resources/meta/documentation.rst](./AwZetaCacheBundle/Resources/meta/documentation.rst).
+The bundle documentation is available in [./Resources/meta/documentation.rst](./AwZetaCacheBundle/blob/master/Resources/meta/documentation.rst).
 
 
 ## License
