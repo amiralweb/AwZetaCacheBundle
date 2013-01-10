@@ -81,8 +81,10 @@ class FileStorageDecorator extends AntiDogPileStorageDecorator
 
     public function getLockItemFilePath($id, $attributes = null)
     {
+        // hash o prevent search/countDataItems to consider lock files as cache files
+        $identifier = md5($this->generateIdentifier($id, $attributes));
 
-        return $lockFile = $this->getLocation() . $this->generateIdentifier($id, $attributes) . $this->getOptions()->lockFile;
+        return $lockFile = $this->getLocation() . $identifier . $this->getOptions()->lockFile;
     }
 
 }
