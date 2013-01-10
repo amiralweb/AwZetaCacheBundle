@@ -175,12 +175,12 @@ Stacked Storages
 
 Configuration
 ~~~~~~~~~~~~~
-Just define multiple storage, just like if the were used stand alone
-Then use them in stack storage
+Just define multiple storages, like if they were used stand alone, Then use them in stack configuration
+
 
 Add this to your config.yml file
 
-.. code
+.. code-block:: yaml
 
     // config.yml
     aw_zeta_cache:
@@ -189,7 +189,7 @@ Add this to your config.yml file
         storages:
               my_file_cache:
                  storage_class: ezcCacheStorageFileObject
-                 location: "%kernel.cache_dir%/my_cache                  # Required: where cache will be stored
+                 location: %kernel.cache_dir%/my_cache                  # Required: where cache will be stored
                  options:
                     ttl: 3600 #(default 1 day if not configured)         # The cache time to life
 
