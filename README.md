@@ -109,7 +109,7 @@ It comes with all cache component features. And some handy capabilities:
 
 ## Bundle documentation
 
-The bundle documentation is available in [./Resources/meta](./Resources/meta) folder.
+The bundle documentation is available in [./Resources/meta/documentation.rst](./Resources/meta/documentation.rst).
 
 
 ## License
