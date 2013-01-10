@@ -3,7 +3,7 @@ Installation
 
 1. With Composer add the following to your `composer.json` file, then run composer `update` command
 
-.. code-block :: js
+.. code-block:: json
 
     // composer.json
     {
@@ -13,12 +13,13 @@ Installation
             "aw/zeta-cache-bundle": "dev-master"
         }
     }
+..
 
 
 
 2. Register AwZetaCacheBundle by adding following to `AppKernel.php` file:
 
-.. code-block :: php
+.. code-block:: php
 
     <?php
 
@@ -29,47 +30,60 @@ Installation
         // ...
     );
 
-# Usage
 
-Please before continuing juste take time to read [Zeta Cache Component tutorial](http://zetacomponents.org/documentation/trunk/Cache/tutorial.html)
+Usage
+=====
+
+Please before continuing juste take time to read `Zeta Cache Component tutorial <http://zetacomponents.org/documentation/trunk/Cache/tutorial.html>`_
 you will be able to maximize the use of AwZetaCacheBundle
 
-# Stand Alone storage
-## Configuration
+
+Stand Alone storage
+-------------------
+
+Configuration
+~~~~~~~~~~~~~
 
 Add this to your config.yml file
-.. code-block :: yml
 
-    // config.yml
+.. code-block:: yaml
+
+    # config.yml
     aw_zeta_cache:
-        dev_mode: %kernel.debug%                                     # Optional, if set all cached data will be flaged as outdated (invalid), so you dont have to clear the cache
-                                                                     # while you are in dev mode :)
-        dog_pile_protection: true                                    # Optional, if set, stand alone storages (that are not used in stack) will be protected against Dog Pile effect
+        dev_mode: %kernel.debug%                                     # Optional, if set all cached data will be flaged as outdated (invalid), 
+                                                                     # so you dont have to clear the cache while you are in dev mode :)
+        dog_pile_protection: true                                    # Optional, if set, stand alone storages (that are not used in stack)
+                                                                     # will be protected against Dog Pile effect
         storages:
           my_cache_id:
              app_clear: false                                        # Optional to flush the cache whe using command line :  php app/console cache:clear
-             storage_class: ezcCacheStorageFileObject                # Required Storage class name : could be any classStorage name see [Zeta Cache Component docs](http://zetacomponents.org/documentation/trunk/Cache/tutorial.html)
+             storage_class: ezcCacheStorageFileObject                # Required Storage class name : could be any classStorage name see 
+                                                                     # http://zetacomponents.org/documentation/trunk/Cache/tutorial.html
                                                                      # Available Classes are listed in [this file](../config/parameters.yml)
 
 
 
 
 
-             location: "%kernel.cache_dir%/my_cache                  # Required: where cache will be stored
+             location: %kernel.cache_dir%/my_cache                  # Required: where cache will be stored
              options:                                                # Under options you can declare any Storage options parameter 'case sensitive'
-                                                                     # for example for ezcCacheStorageFileObject, all supported parameters are documented in coresponding Options Class
-                                                                     # [ezcCacheStorageFileOptions](http://zetacomponents.org/documentation/trunk/Cache/phpdoc/ezcCacheStorageFileOptions.html)
+                                                                     # for example for ezcCacheStorageFileObject, all supported parameters are 
+                                                                     # documented in coresponding Options Class ezcCacheStorageFileOptions
+                                                                     # see http://zetacomponents.org/documentation/trunk/Cache/phpdoc/ezcCacheStorageFileOptions.html
                                                                      # for example : extension,  lockFile, lockWaitTime, maxLockTime, permissions, ttl
                                                                      # here we will define the ttl parameter
 
                     ttl: 3600 #(default 1 day if not configured)     # The cache time to life
 
-## Service usage
+
+Service usage
+~~~~~~~~~~~~~
 
 .. code-block :: php
-    <?php
+ 
+    // The cache service name is concatenation of aw_zeta_cache.cache. and configured storage id
 
-    $cache = $container->get('aw_zeta_cache.cache.my_cache_id');     # The cache service name is concatenation of aw_zeta_cache.cache. and configured storage id
+    $cache = $container->get('aw_zeta_cache.cache.my_cache_id');    
 
     // Check if $data is in cache and is fresh
     if (($data = $cache->restore('list') === false) {
@@ -87,7 +101,6 @@ Add this to your config.yml file
 Another example to set cache attribute :
 
 .. code-block :: php
-    <?php
 
         $cache = $container->get('aw_zeta_cache.cache.my_cache_id');
 
@@ -96,7 +109,7 @@ Another example to set cache attribute :
                 // so make it and store it in cache
                 // The attribute/value extends the key of the cache
                 // for example it could be a parameter to your controller
-                $data = 'data that consumes a lot of resources, and is related to my application parameter location value 125'
+                $data = 'data is related to my application parameter location value 25'
                 $cacheStack->store('list',$data, array('location'=>25));
 
          }
@@ -106,23 +119,22 @@ Another example to set cache attribute :
          if (($data = $cache->restore('list', array('location'=> 125))) === false) {
                 // the data is missing or is outdated
                 // so make it and store it in cache
-                $data = 'data that consumes a lot of resources, and is related to my application parameter location value 125'
+                $data = 'data is related to my application parameter location value 125'
                 $cacheStack->store('list',$data, array('location'=>125));
 
          }
 
-         // you can retrive cached resources by parameter then add third parameter true to enable lookup ignoring attribute value
+         // you can retrive cached resources by parameter then add third parameter true 
+         //to enable lookup ignoring attribute value
 
-         if (($data = $cache->restore('list', array('location')), true) === false) {
-                // the data is missing or is outdated
-                // so make it and store it in cache
-                $data = 'data that consumes a lot of resources, and is related to my application parameter location value 125'
-                $cacheStack->store('list',$data, array('location'=>125));
+         if (($data = $cache->restore('list', array('location')), true) !== false) {
+               // use $data
 
          }
 
 
-        // you can combine multiple parameters ( this example is from [Zeta Cache Component docs](http://zetacomponents.org/documentation/trunk/Cache/tutorial.html) )
+        // you can combine multiple parameters ( this example is from 
+        // `Zeta Cache Component docs <http://zetacomponents.org/documentation/trunk/Cache/tutorial.html>`_
 
         $exampleData = array(
                                 'unique_id_3_a' => array( 'language' => 'en', 'section' => 'articles' ),
@@ -158,13 +170,17 @@ Another example to set cache attribute :
         "\n\n";
 
 
-# Stacked Storages
-## Configuration
+Stacked Storages
+----------------
+
+Configuration
+~~~~~~~~~~~~~
 Just define multiple storage, just like if the were used stand alone
 Then use them in stack storage
 
 Add this to your config.yml file
-.. code-block :: yml
+
+.. code
 
     // config.yml
     aw_zeta_cache:
@@ -190,7 +206,8 @@ Add this to your config.yml file
                     - { id: file_cache, itemLimit: 10000, freeRate: 0.5 }
                     - { id: my_memcache_cache, itemLimit: 1000, freeRate: 0.3 }
                 options:
-                    replacementStrategy: ezcCacheStackLfuReplacementStrategy      # optional: Replacement strategy default  ezcCacheStackLruReplacementStrategy (LRU)
+                    replacementStrategy: ezcCacheStackLfuReplacementStrategy      # optional: Replacement strategy default  
+                                                                                  # is ezcCacheStackLruReplacementStrategy (LRU)
                                                                                   # for LFU then use ezcCacheStackLfuReplacementStrategy
 
 From here you can use the defined stack just like a simple storage
@@ -210,15 +227,17 @@ From here you can use the defined stack just like a simple storage
 
          }
 
-# Full configuration
+Full configuration
+==================
+Doc To be completed
+
+Command line
+============
 
 Doc To be completed
 
-# Command line
-
-Doc To be completed
-
-# Cache Clearer Service
+Cache Clearer Service
+==================
 
 Doc To be completed
 
