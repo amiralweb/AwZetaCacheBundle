@@ -33,7 +33,7 @@ class AntiDogPileStorageFactory
 
         }
 
-        throw new \RuntimeException(sprintf('The cache storage  %s does not support dog pile protection', $storage->location));
+        throw new \RuntimeException(sprintf('The cache storage using location "%s" does not support dog pile protection', $storage->getLocation()));
 
     }
 
