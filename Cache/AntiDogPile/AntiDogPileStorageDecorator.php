@@ -79,19 +79,19 @@ abstract class AntiDogPileStorageDecorator
         return call_user_func_array(array($this->coveredStorage, $method), $args);
     }
 
-    public function __get($property)
+    public function __get($propertyName)
     {
-        return call_user_func(array($this->coveredStorage, '__get'), $property);
+        $this->coveredStorage->$propertyName;
     }
 
-    public function __set($property, $value)
+    public function __set($propertyName, $value)
     {
-        return call_user_func(array($this->coveredStorage, '__set'), $property, $value);
+        $this->coveredStorage->$propertyName = $value;
     }
 
     public function __isset($propertyName)
     {
-        return call_user_func(array($this->coveredStorage, '__isset'), $propertyName);
+        return isset($this->coveredStorage->$propertyName);
     }
 
     /**
