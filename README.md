@@ -78,7 +78,7 @@ It comes with all cache component features. And some handy capabilities:
 
 - **Automatic creation of cache locations**:
     As by default for file and memory/file hybrid storage (ezcCacheStorageFileApcArray) the location should be an existing writeable path.
-    
+
 - **Dog Pile effect protection for stand alone storages** :
     You can enable Anti Dog Pile protection for stand alone storages. As the major protection against this effect was only implemented in Stack Storage.
     When enabled, storages that dont belong to any stack will be automatically protected from race conditions in high load environments.
@@ -102,7 +102,7 @@ It comes with all cache component features. And some handy capabilities:
 
 ## Bundle documentation
 
-The bundle documentation is available in `Resources/meta/documentation.rst` 
+The bundle documentation is available in `Resources/doc/index.rst`
 
 ## License
 The code is released under the Apache License, Version 2.0. You can find in `Resources/meta/LICENCE`
