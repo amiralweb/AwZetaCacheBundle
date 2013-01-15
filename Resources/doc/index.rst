@@ -203,7 +203,7 @@ Add this to your config.yml file
        stacks:
             my_stack:
                 storages:
-                    - { id: file_cache, itemLimit: 10000, freeRate: 0.5 }
+                    - { id: my_file_cache, itemLimit: 10000, freeRate: 0.5 }
                     - { id: my_memcache_cache, itemLimit: 1000, freeRate: 0.3 }
                 options:
                     replacementStrategy: ezcCacheStackLfuReplacementStrategy      # optional: Replacement strategy default  
