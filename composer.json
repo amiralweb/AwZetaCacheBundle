@@ -9,7 +9,7 @@
 				"homepage" : "http://www.amiralweb.com"
 			}],
 	"require" : {
-		"symfony/symfony" : "2.1.*",
+		"symfony/symfony" : ">=2.1,<3.0-dev",
 		"zetacomponents/cache" : "dev-master"
 	},
 	"minimum-stability" : "dev",
