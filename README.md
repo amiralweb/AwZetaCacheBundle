@@ -1,3 +1,6 @@
+
+This project is no longer maintained
+
 # AwZetaCacheBundle Yet another cache component for Symfony2 SE
 
 
